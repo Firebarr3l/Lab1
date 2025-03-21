@@ -1,8 +1,7 @@
 #include "menu.hpp"
 #include <iostream>
+#include <string>
 
-
-// Реализация displayGardens
 void displayGardens(const std::vector<GardenRecord>* data) {
     if (data->empty()) {
         std::cout << "Нет данных для отображения." << std::endl;
@@ -18,45 +17,33 @@ void displayGardens(const std::vector<GardenRecord>* data) {
     }
 }
 
-
 void menu(std::vector<GardenRecord>* data) {
     int choice;
+    std::string filename = "gardenassociat.db";  // Файл по умолчанию
 
     do {
         std::cout << "\nМеню:\n";
-        std::cout << "1. Показать все записи\n";
-        std::cout << "2. Добавить запись\n";
-        std::cout << "3. Сохранить изменения\n";
+        std::cout << "1. Открыть файл\n";
+        std::cout << "2. Сохранить файл\n";
+        std::cout << "3. Вывести на экран список\n";
         std::cout << "4. Выйти\n";
         std::cout << "Выберите действие: ";
         std::cin >> choice;
 
         switch (choice) {
-        case 1:
-            displayGardens(data);
-            break;
-        case 2: {
-            GardenRecord newGarden;
-            std::cout << "Введите ID: ";
-            std::cin >> newGarden.id;
-            std::cout << "Введите номер участка: ";
-            std::cin >> newGarden.number;
-            std::cin.ignore();
-            std::cout << "Введите ФИО: ";
-            std::getline(std::cin, newGarden.name);
-            std::cout << "Введите телефон: ";
-            std::getline(std::cin, newGarden.phone);
-            std::cout << "Введите адрес: ";
-            std::getline(std::cin, newGarden.address);
-
-            data->push_back(newGarden);
-            std::cout << "Запись добавлена.\n";
+        case 1: {  // Открыть файл
+            readFromFile(filename, data);
+            std::cout << "Файл открыт и данные загружены.\n";
             break;
         }
-        case 3:
-            writeToFile("gardenassociat.db", data);
+        case 2: {  // Сохранить файл
+            writeToFile(filename, data);
             break;
-        case 4:
+        }
+        case 3:  // Вывести на экран список
+            displayGardens(data);
+            break;
+        case 4:  // Выйти
             std::cout << "Выход из программы.\n";
             break;
         default:

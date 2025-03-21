@@ -3,10 +3,7 @@
 #include "menu.hpp"
 
 int main() {
-    std::vector<GardenRecord> gardens;
-
-    // Читаем данные из файла
-    readFromFile("gardenassociat.db", &gardens);
+    std::vector<GardenRecord> gardens;  // Массив структур
 
     // Запускаем меню
     menu(&gardens);
