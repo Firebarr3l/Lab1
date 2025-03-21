@@ -19,7 +19,7 @@ void menu(const std::string& filename, GardenAssociation *data, const int size) 
     do {
         std::cout << "\nМеню:\n";
         std::cout << "1. Открыть файл\n";
-        std::cout << "2. Сохранить файл\n";
+        std::cout << "2. Поменять файл\n";
         std::cout << "3. Вывести на экран список\n";
         std::cout << "4. О программе\n";
         std::cout << "5. Выход\n";
@@ -31,7 +31,7 @@ void menu(const std::string& filename, GardenAssociation *data, const int size) 
             readFromFile(filename, data, size);
             break;
         case 2:
-            writeToFile(filename, data, size);
+            writeToFile(filename, size);
             break;
         case 3:
             displayData(data, size);

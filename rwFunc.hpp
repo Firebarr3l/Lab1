@@ -13,7 +13,7 @@ struct GardenAssociation {
 };
 
 // Функция для записи данных в файл
-void writeToFile(const std::string& filename, const GardenAssociation *data, const int size);
+void writeToFile(const std::string& filename, const int size);
 
 // Функция для чтения данных из файла
 void readFromFile(const std::string& filename, GardenAssociation *data, const int size);
