@@ -5,6 +5,9 @@
 #include <vector>
 
 
+const int MAX_GARDENS = 100;
+
+
 struct GardenRecord {
     int id;             // порядковый номер записи
     int number;            // номер участка
@@ -14,9 +17,9 @@ struct GardenRecord {
 };
 
 // Прототип функции для чтения данных из файла
-void readFromFile(const std::string& filename, std::vector<GardenRecord>& data);
+void readFromFile(const std::string& filename, std::vector<GardenRecord>* data);
 
 // Прототип функции для записи данных в файл
-void writeToFile(const std::string& filename, const std::vector<GardenRecord>& data);
+void writeToFile(const std::string& filename, const std::vector<GardenRecord>* data);
 
 #endif // RWFUNC_HPP
