@@ -14,9 +14,9 @@ struct GardenRecord {
 };
 
 // Прототип функции для чтения данных из файла
-void readFromFile(const std::string& filename, std::vector<std::string>& data);
+void readFromFile(const std::string& filename, std::vector<GardenRecord>& data);
 
 // Прототип функции для записи данных в файл
-void writeToFile(const std::string& filename, const std::vector<std::string>& data);
+void writeToFile(const std::string& filename, const std::vector<GardenRecord>& data);
 
 #endif // RWFUNC_HPP

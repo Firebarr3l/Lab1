@@ -16,20 +16,20 @@ void readFromFile(const std::string& filename, std::vector<GardenRecord>& data) 
         std::stringstream ss(line);
         GardenRecord garden;
         std::string temp;
-        // Считывание данных для каждого поля
-        std::getline(ss, temp, ';');
-        garden.id = std::stoi(temp); // Преобразуем в целое число
 
         std::getline(ss, temp, ';');
-        garden.number = std::stoi(temp); // Преобразуем в целое число
+        garden.id = std::stoi(temp);
 
-        std::getline(ss, garden.name, ';'); // Имя и фамилия
+        std::getline(ss, temp, ';');
+        garden.number = std::stoi(temp);
 
-        std::getline(ss, garden.phone, ';'); // Телефон
+        std::getline(ss, garden.name, ';');
 
-        std::getline(ss, garden.address, ';'); // Адрес
+        std::getline(ss, garden.phone, ';');
 
-        data.push_back(garden); // Добавляем структуру в вектор
+        std::getline(ss, garden.address, ';');
+
+        data.push_back(garden);
     }
 
 
