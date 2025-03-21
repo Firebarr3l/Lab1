@@ -36,7 +36,7 @@ void writeToFile(const std::string& filename, const std::vector<GardenRecord>* d
     std::ofstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Ошибка при открытии файла для записи!" << std::endl;
-        return;  // Выход из функции при ошибке открытия файла
+        return;
     }
 
     for (const auto& garden : *data) {
@@ -49,4 +49,5 @@ void writeToFile(const std::string& filename, const std::vector<GardenRecord>* d
     }
 
     file.close();
+    std::cout << "Данные успешно записаны в файл." << std::endl;
 }

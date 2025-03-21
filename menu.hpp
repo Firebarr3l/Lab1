@@ -3,6 +3,8 @@
 
 #include "rwFunc.hpp"
 
-void displayGardens(const std::vector<GardenRecord>* data);
+void displayGardens(const std::vector<GardenRecord>* data);  // Прототип функции
+
+void menu(std::vector<GardenRecord>* data);
 
 #endif  // MENU_HPP

@@ -5,10 +5,11 @@
 int main() {
     std::vector<GardenRecord> gardens;
 
-    // Читаем данные из файла через указатель
+    // Читаем данные из файла
     readFromFile("gardenassociat.db", &gardens);
 
-    displayGardens(&gardens);
+    // Запускаем меню
+    menu(&gardens);
 
     return 0;
 }
