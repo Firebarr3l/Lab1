@@ -2,9 +2,8 @@
 #define RWFUNC_HPP
 
 #include <string>
-#include <vector>
 
-// Структура для хранения данных
+// Структура для хранения данных о членах товарищества
 struct GardenAssociation {
     int id;
     int area;
@@ -13,8 +12,10 @@ struct GardenAssociation {
     std::string address;
 };
 
-// Прототипы функций
-void readFromFile(const std::string& filename, std::vector<GardenAssociation>& data);
-void writeToFile(const std::string& filename, const std::vector<GardenAssociation>& data);
+// Функция для записи данных в файл
+void writeToFile(const std::string& filename, const GardenAssociation *data, const int size);
+
+// Функция для чтения данных из файла
+void readFromFile(const std::string& filename, GardenAssociation *data, const int size);
 
 #endif // RWFUNC_HPP

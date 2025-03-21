@@ -1,41 +1,52 @@
 #include "rwFunc.hpp"
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
+#include <sstream>
 
-// Функция для чтения данных из файла
-void readFromFile(const std::string& filename, std::vector<GardenAssociation>& data) {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "Ошибка открытия файла!" << std::endl;
+void writeToFile(const std::string& filename, const GardenAssociation *data, const int size) {
+    std::ofstream dbFile(filename);
+    if (!dbFile) {
+        std::cerr << "Ошибка открытия файла для записи: " << filename << std::endl;
         return;
     }
 
-    for (auto& item : data) {
-        char delimiter; // Для чтения символа ';'
-        file >> item.id >> delimiter;
-        file >> item.area >> delimiter;
-        std::getline(file, item.name, ';');
-        std::getline(file, item.phone, ';');
-        std::getline(file, item.address, ';');
+    // Записываем данные в файл
+    for (int i = 0; i < size; ++i) {
+        dbFile << data[i].id << ";" << data[i].area << ";" << data[i].name << ";"
+               << data[i].phone << ";" << data[i].address << ";" << std::endl;
     }
-    file.close();
+
+    dbFile.close();
+    std::cout << "Данные успешно записаны в файл: " << filename << std::endl;
 }
 
-// Функция для записи данных в файл
-void writeToFile(const std::string& filename, const std::vector<GardenAssociation>& data) {
-    std::ofstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "Ошибка открытия файла для записи!" << std::endl;
+void readFromFile(const std::string& filename, GardenAssociation *data, const int size) {
+    std::ifstream dbFile(filename);
+    if (!dbFile) {
+        std::cerr << "Ошибка открытия файла для чтения: " << filename << std::endl;
         return;
     }
 
-    for (const auto& item : data) {
-        file << item.id << ";"
-             << item.area << ";"
-             << item.name << ";"
-             << item.phone << ";"
-             << item.address << ";\n";
+    std::string line;
+    int index = 0;
+    while (std::getline(dbFile, line) && index < size) {
+        std::stringstream ss(line);
+        std::string token;
+        GardenAssociation record;
+
+        // Чтение данных из строки
+        std::getline(ss, token, ';');
+        record.id = std::stoi(token);
+
+        std::getline(ss, token, ';');
+        record.area = std::stoi(token);
+
+        std::getline(ss, record.name, ';');
+        std::getline(ss, record.phone, ';');
+        std::getline(ss, record.address, ';');
+
+        data[index++] = record;
     }
-    file.close();
+
+    dbFile.close();
 }

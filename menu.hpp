@@ -1,12 +1,10 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
-#include <vector>
+#include <string>
 #include "rwFunc.hpp"
 
-// Прототипы функций
-void printData(const std::vector<GardenAssociation>& data);
-void aboutProgram();
-void menu(std::vector<GardenAssociation>& data);
+// Функция для отображения меню и обработки пользовательского ввода
+void menu(const std::string& filename, GardenAssociation *data, const int size);
 
 #endif // MENU_HPP

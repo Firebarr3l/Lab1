@@ -1,29 +1,20 @@
 #include "menu.hpp"
+#include "rwFunc.hpp"
 #include <iostream>
+#include <string>
 
 // Функция для вывода данных на экран
-void printData(const std::vector<GardenAssociation>& data) {
-    std::cout << "Список участников садоводства:\n";
-    for (const auto& item : data) {
-        std::cout << "ID: " << item.id << ", Площадь: " << item.area << ", Имя: " << item.name
-                  << ", Телефон: " << item.phone << ", Адрес: " << item.address << std::endl;
+void displayData(const GardenAssociation *data, const int size) {
+    std::cout << "Список членов товарищества:" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        std::cout << "ID: " << data[i].id << ", Участок: " << data[i].area
+                  << ", Имя: " << data[i].name << ", Телефон: " << data[i].phone
+                  << ", Адрес: " << data[i].address << std::endl;
     }
 }
 
-// Функция для вывода информации о программе
-void aboutProgram() {
-    std::cout << "Информация о программе:\n";
-    std::cout << "Фамилия: Иванов\n";
-    std::cout << "Имя: Иван\n";
-    std::cout << "Отчество: Иванович\n";
-    std::cout << "Курс: 3\n";
-    std::cout << "Группа: ПИ-21\n";
-    std::cout << "Дата компиляции: " << __DATE__ << " " << __TIME__ << "\n";
-    std::cout << "Вариант: 1\n";
-}
-
 // Функция для отображения меню
-void menu(std::vector<GardenAssociation>& data) {
+void menu(const std::string& filename, GardenAssociation *data, const int size) {
     int choice;
     do {
         std::cout << "\nМеню:\n";
@@ -37,24 +28,29 @@ void menu(std::vector<GardenAssociation>& data) {
 
         switch (choice) {
         case 1:
-            readFromFile("gardenassociat.db", data);
-            std::cout << "Файл успешно открыт!\n";
+            readFromFile(filename, data, size);
             break;
         case 2:
-            writeToFile("/Users/f1rebarrel/Code/QtProjects/pr/Lab1/gardenassociat.db", data);
-            std::cout << "Файл успешно сохранен!\n";
+            writeToFile(filename, data, size);
             break;
         case 3:
-            printData(data);
+            displayData(data, size);
             break;
         case 4:
-            aboutProgram();
+            std::cout << "\nО программе:\n";
+            std::cout << "Фамилия: Клишин\n";
+            std::cout << "Имя: Даниил\n";
+            std::cout << "Отчество: Дмитриевич\n";
+            std::cout << "Курс: 2\n";
+            std::cout << "Группа: ИЦТМС 2-1\n";
+            std::cout << "Дата компиляции: 21.03.2025\n";
+            std::cout << "Номер варианта: 19\n";
             break;
         case 5:
-            std::cout << "Выход из программы.\n";
+            std::cout << "Выход из программы...\n";
             break;
         default:
-            std::cout << "Неверный выбор. Попробуйте снова.\n";
+            std::cout << "Неверный выбор, попробуйте снова.\n";
         }
     } while (choice != 5);
 }

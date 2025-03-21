@@ -1,12 +1,14 @@
-#include <vector>
-#include "rwFunc.hpp"
+#include <string>
 #include "menu.hpp"
 
-int main() {
-    const int SIZE = 10; // Размер массива структур
-    std::vector<GardenAssociation> data(SIZE); // Массив структур
+#define SIZE 10  // Размер массива данных
 
-    // Вызов меню
-    menu(data);
+int main() {
+    std::string filename = "/Users/f1rebarrel/Code/QtProjects/pr/Lab1/gardenassociat.db";
+    GardenAssociation data[SIZE];  // Массив структур для хранения записей
+
+    // Запуск меню
+    menu(filename, data, SIZE);
+
     return 0;
 }
