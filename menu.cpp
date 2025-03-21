@@ -17,6 +17,18 @@ void displayGardens(const std::vector<GardenRecord>* data) {
     }
 }
 
+// Функция, которая выводит информацию о программе
+void aboutProgram() {
+    std::cout << "\nО программе:\n";
+    std::cout << "Фамилия: Клишин\n";
+    std::cout << "Имя: Даниил\n";
+    std::cout << "Отчество: Дмитриевич\n";
+    std::cout << "Курс: 2\n";
+    std::cout << "Группа: ИЦТМС 2-1\n";
+    std::cout << "Дата компиляции: ИЗМЕНИТЬ!!!5\n";
+    std::cout << "Номер варианта: 19\n";
+}
+
 void menu(std::vector<GardenRecord>* data) {
     int choice;
     std::string filename = "gardenassociat.db";  // Файл по умолчанию
@@ -26,7 +38,8 @@ void menu(std::vector<GardenRecord>* data) {
         std::cout << "1. Открыть файл\n";
         std::cout << "2. Сохранить файл\n";
         std::cout << "3. Вывести на экран список\n";
-        std::cout << "4. Выйти\n";
+        std::cout << "4. О программе\n";  // Новый пункт
+        std::cout << "5. Выход\n";  // Новый пункт
         std::cout << "Выберите действие: ";
         std::cin >> choice;
 
@@ -43,11 +56,14 @@ void menu(std::vector<GardenRecord>* data) {
         case 3:  // Вывести на экран список
             displayGardens(data);
             break;
-        case 4:  // Выйти
+        case 4:  // О программе
+            aboutProgram();
+            break;
+        case 5:  // Выход
             std::cout << "Выход из программы.\n";
             break;
         default:
             std::cout << "Некорректный выбор, попробуйте снова.\n";
         }
-    } while (choice != 4);
+    } while (choice != 5);  // Меню будет продолжаться до выхода
 }
