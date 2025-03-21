@@ -11,3 +11,6 @@ SOURCES += \
 HEADERS += \
     menu.hpp \
     rwFunc.hpp
+
+DISTFILES += \
+    gardenassociat.db
