@@ -4,22 +4,17 @@
 #include <string>
 #include <vector>
 
-
-const int MAX_GARDENS = 100;
-
-
-struct GardenRecord {
-    int id;             // порядковый номер записи
-    int number;            // номер участка
-    std::string name;   // имя и фамилия
-    std::string phone;  // телефон
-    std::string address; // адрес
+// Структура для хранения данных
+struct GardenAssociation {
+    int id;
+    int area;
+    std::string name;
+    std::string phone;
+    std::string address;
 };
 
-// Прототип функции для чтения данных из файла
-void readFromFile(const std::string& filename, std::vector<GardenRecord>* data);
-
-// Прототип функции для записи данных в файл
-void writeToFile(const std::string& filename, const std::vector<GardenRecord>* data);
+// Прототипы функций
+void readFromFile(const std::string& filename, std::vector<GardenAssociation>& data);
+void writeToFile(const std::string& filename, const std::vector<GardenAssociation>& data);
 
 #endif // RWFUNC_HPP

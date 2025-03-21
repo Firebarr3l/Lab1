@@ -1,11 +1,12 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
+#include <vector>
 #include "rwFunc.hpp"
 
 // Прототипы функций
-void displayGardens(const std::vector<GardenRecord>* data);
-void menu(std::vector<GardenRecord>* data);
-void aboutProgram();  // Новый прототип для пункта "О программе"
+void printData(const std::vector<GardenAssociation>& data);
+void aboutProgram();
+void menu(std::vector<GardenAssociation>& data);
 
-#endif  // MENU_HPP
+#endif // MENU_HPP

@@ -1,53 +1,41 @@
 #include "rwFunc.hpp"
-#include <fstream>
 #include <iostream>
+#include <fstream>
+#include <string>
 
 // Функция для чтения данных из файла
-void readFromFile(const std::string& filename, std::vector<GardenRecord>* data) {
+void readFromFile(const std::string& filename, std::vector<GardenAssociation>& data) {
     std::ifstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Ошибка при открытии файла для чтения!" << std::endl;
-        return;  // Выход из функции при ошибке открытия файла
+        std::cerr << "Ошибка открытия файла!" << std::endl;
+        return;
     }
 
-    std::string line;
-    while (std::getline(file, line)) {
-        GardenRecord garden;
-        size_t pos = 0;
-
-        garden.id = std::stoi(line, &pos);
-        line = line.substr(pos + 1);
-        garden.number = std::stoi(line, &pos);
-        line = line.substr(pos + 1);
-        garden.name = line.substr(0, line.find(';'));
-        line = line.substr(line.find(';') + 1);
-        garden.phone = line.substr(0, line.find(';'));
-        line = line.substr(line.find(';') + 1);
-        garden.address = line;
-
-        data->push_back(garden);  // Используем указатель
+    for (auto& item : data) {
+        char delimiter; // Для чтения символа ';'
+        file >> item.id >> delimiter;
+        file >> item.area >> delimiter;
+        std::getline(file, item.name, ';');
+        std::getline(file, item.phone, ';');
+        std::getline(file, item.address, ';');
     }
-
     file.close();
 }
 
 // Функция для записи данных в файл
-void writeToFile(const std::string& filename, const std::vector<GardenRecord>* data) {
+void writeToFile(const std::string& filename, const std::vector<GardenAssociation>& data) {
     std::ofstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Ошибка при открытии файла для записи!" << std::endl;
+        std::cerr << "Ошибка открытия файла для записи!" << std::endl;
         return;
     }
 
-    for (const auto& garden : *data) {
-        file << garden.id << ";"
-             << garden.number << ";"
-             << garden.name << ";"
-             << garden.phone << ";"
-             << garden.address << ";"
-             << std::endl;
+    for (const auto& item : data) {
+        file << item.id << ";"
+             << item.area << ";"
+             << item.name << ";"
+             << item.phone << ";"
+             << item.address << ";\n";
     }
-
     file.close();
-    std::cout << "Данные успешно записаны в файл." << std::endl;
 }

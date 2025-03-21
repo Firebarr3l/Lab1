@@ -3,10 +3,10 @@
 #include "menu.hpp"
 
 int main() {
-    std::vector<GardenRecord> gardens;  // Массив структур
+    const int SIZE = 10; // Размер массива структур
+    std::vector<GardenAssociation> data(SIZE); // Массив структур
 
-    // Запускаем меню
-    menu(&gardens);
-
+    // Вызов меню
+    menu(data);
     return 0;
 }
